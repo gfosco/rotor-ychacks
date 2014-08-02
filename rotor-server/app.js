@@ -1,5 +1,3 @@
-
-
 var http = require('http');
 var caller = require('request');
 var router = require('choreographer').router();
@@ -11,9 +9,7 @@ var buffet = require('buffet')({
   poweredBy:false
 });
 var rack = require('hat').rack();
-
 var Parse = require('parse').Parse;
-
 var Clients = [];
 var Responses = [];
 
