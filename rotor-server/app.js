@@ -10,6 +10,7 @@ var buffet = require('buffet')({
   root:'./',
   poweredBy:false
 });
+var rack = require('hat').rack();
 
 var Parse = require('parse').Parse;
 
@@ -30,8 +31,7 @@ router.get('/public/**', function(req, res) {
 router.get('/client/*/**', function(req, res, client, urldata) {
   if (Clients[client]) {
     Clients[client].emit('get', {
-      path:urldata,
-      url:req.url
+      path:urldata
     });
     res.end(client);
   }
