@@ -32,7 +32,7 @@ router.get('/client/*/**', function(req, res, client, urldata) {
   if (Clients[client]) {
     Clients[client].emit('get', {
       path:urldata,
-      fuckyou:'hi'
+      fuckyou:{'hi':'there'}
     });
     res.end(client);
   }
