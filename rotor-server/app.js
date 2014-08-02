@@ -16,7 +16,7 @@ var Clients = {};
 var Responses = {};
 
 router.get('/', function(req, res) {
-  res.end('Hi');
+  res.redirect('/public/index.html');
 });
 
 router.get('/public/**', function(req, res) {
