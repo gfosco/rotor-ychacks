@@ -30,9 +30,12 @@ router.get('/public/**', function(req, res) {
 
 router.get('/client/*/**', function(req, res, client, urldata) {
   if (Clients[client]) {
+    var url_parts = url.parse(req.url);
+    console.log(url_parts);
+    var query_data = qs.parse(url_parts.query);
     Clients[client].emit('get', {
       path:urldata,
-      fuckyou:{'hi':'there'}
+      queryData:query_data
     });
     res.end(client);
   }
