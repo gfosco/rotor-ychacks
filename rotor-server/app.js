@@ -12,8 +12,8 @@ var buffet = require('buffet')({
 
 var Parse = require('parse').Parse;
 
-var Clients = {};
-var Responses = {};
+var Clients = [];
+var Responses = [];
 
 router.get('/', function(req, res) {
   res.writeHead(301, {Location: '/public/index.html'});
@@ -31,7 +31,7 @@ router.get('/client/*/**', function(req, res, client, urldata) {
     Clients[client].emit('get', {
       path:urldata
     });
-    res.end('Ok');
+    res.end(client);
   }
   res.end('Not Ok.');
 });
