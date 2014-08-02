@@ -60,7 +60,8 @@ router.post('/client/*', postForClient);
 router.post('/client/*/**', postForClient);
 
 
-router.get('/**', function(req, res) {
+router.get('/**', function(req, res, dur) {
+  console.log('Page requested, ' + dur);
   buffet(req, res, function() {
     buffet.notFound(req, res);
   });
