@@ -4,21 +4,12 @@ var router = require('choreographer').router();
 var socket = require('socket.io');
 var url = require('url');
 var qs = require('querystring');
-var static = require('node-static');
-var staticServer = new static.Server('./');
+var nodeStatic = require('node-static');
+var staticServer = new nodeStatic.Server('./dashboard');
 var rack = require('hat').rack();
 var Parse = require('parse').Parse;
 var Clients = [];
 var Responses = [];
-
-router.get('/', function(req, res) {
-  res.writeHead(302, {Location: '/dashboard/index.html'});
-  res.end();
-});
-
-router.get('/dashboard/**', function(req, res) {
-  staticServer.serve(req, res);
-});
 
 var getForClient = function(req, res, client, urldata) {
   logEvent('in', client, 'GET');
@@ -68,6 +59,12 @@ var postForClient = function(req, res, client, urldata) {
 
 router.post('/client/*', postForClient);
 router.post('/client/*/**', postForClient);
+
+
+router.get('/**', function(req, res) {
+  staticServer.serve(req, res);
+});
+
 
 var app = http.createServer(router);
 var io = socket.listen(app);
