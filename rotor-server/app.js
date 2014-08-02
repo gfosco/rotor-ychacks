@@ -31,13 +31,13 @@ router.get('/public/**', function(req, res) {
 router.get('/client/*/**', function(req, res, client, urldata) {
   if (Clients[client]) {
     var url_parts = url.parse(req.url);
-    console.log(url_parts);
     var query_data = qs.parse(url_parts.query);
+    var response_id = rack();
+    Responses[response_id] = res;
     Clients[client].emit('get', {
       path:urldata,
       queryData:query_data
     });
-    res.end(client);
   }
   res.end('Not Ok.');
 });
@@ -52,4 +52,10 @@ io.sockets.on('connection', function(socket) {
   Clients[socket.id] = socket;
   connectedClients++;
   socket.emit('id', socket.id);
+  socket.on('response', function(data) {
+    if (Responses[data.responseId]) {
+      Responses[data.responseId].end(data.body);
+    }
+  })
 });
+
