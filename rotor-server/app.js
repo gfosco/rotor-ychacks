@@ -31,7 +31,9 @@ router.get('/client/*/**', function(req, res, client, urldata) {
     Clients[client].emit('get', {
       path:urldata
     });
+    res.end('Ok');
   }
+  res.end('Not Ok.');
 });
 
 var app = http.createServer(router);
