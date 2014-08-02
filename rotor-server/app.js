@@ -36,7 +36,8 @@ router.get('/client/*/**', function(req, res, client, urldata) {
     Responses[response_id] = res;
     Clients[client].emit('get', {
       path:urldata,
-      queryData:query_data
+      queryData:query_data,
+      responseId:response_id
     });
   }
   res.end('Not Ok.');
