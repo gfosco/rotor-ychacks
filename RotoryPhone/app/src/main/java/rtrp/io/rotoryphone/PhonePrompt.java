@@ -2,8 +2,18 @@ package rtrp.io.rotoryphone;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.github.nkzawa.emitter.Emitter;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import bolts.Task;
 
 
 public class PhonePrompt extends Activity {
@@ -19,6 +29,17 @@ public class PhonePrompt extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.phone_prompt, menu);
+        Rotor r = new Rotor();
+        r.setAlias("RotoryPhone");
+        r.setGetListener(new Rotor.RequestListener() {
+            @Override
+            public Task<JSONObject> onRequest(JSONObject requestObject) throws JSONException {
+                JSONObject result = new JSONObject();
+                result.put("body", "I'm so awesome: " + requestObject);
+                return Task.forResult(result);
+            }
+        });
+        r.connect();
         return true;
     }
 
