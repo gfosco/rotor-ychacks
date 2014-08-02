@@ -88,6 +88,11 @@ io.sockets.on('connection', function(socket) {
   socket.on('response', function(data) {
     logEvent('in', socket.id, 'event');
     if (Responses[data.responseId]) {
+      if (Responses[data.contentType]) {
+        Responses[data.responseId].writeHead(200, {'Content-Type':data.contentType});
+      } else {
+        Responses[data.responseId].writeHead(200, {'Content-Type':'text/html'});
+      }
       Responses[data.responseId].end(data.body);
     }
   });
