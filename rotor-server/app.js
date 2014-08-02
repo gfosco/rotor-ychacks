@@ -59,6 +59,9 @@ io.sockets.on('connection', function(socket) {
     if (Responses[data.responseId]) {
       Responses[data.responseId].end(data.body);
     }
-  })
+  });
+  socket.on('alias', function(data) {
+    Clients[data] = socket;
+  });
 });
 
