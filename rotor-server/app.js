@@ -103,6 +103,7 @@ io.sockets.on('connection', function(socket) {
 });
 
 function logEvent(direction, client, type) {
+  console.log('Event ' + direction + ' for ' + client + ' with type ' + type);
   if (Clients['dashboard']) {
     Clients['dashboard'].emit('log', {
       direction:direction,
