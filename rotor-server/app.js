@@ -5,6 +5,7 @@ var caller = require('request');
 var router = require('choreographer').router();
 var socket = require('socket.io');
 var url = require('url');
+var qs = require('querystring');
 var buffet = require('buffet')({
   root:'./',
   poweredBy:false
@@ -31,7 +32,7 @@ router.get('/client/*/**', function(req, res, client, urldata) {
     var url_parts = url.parse(req.url);
     Clients[client].emit('get', {
       path:urldata,
-      query:url_parts.query
+      query:qs.parse(url_parts.query)
     });
     res.end(client);
   }
