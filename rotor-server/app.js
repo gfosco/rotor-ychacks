@@ -16,7 +16,7 @@ var Clients = [];
 var Identity = [];
 
 
-router.on('/', function(req, res) {
+router.get('/', function(req, res) {
   res.end('Hi');
 });
 
