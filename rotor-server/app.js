@@ -4,10 +4,7 @@ var router = require('choreographer').router();
 var socket = require('socket.io');
 var url = require('url');
 var qs = require('querystring');
-var buffet = require('buffet')({
-  root:'./',
-  poweredBy:false
-});
+var buffet = require('buffet')({root:'../dashboard/'});
 var rack = require('hat').rack();
 var Parse = require('parse').Parse;
 var Clients = [];
