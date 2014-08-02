@@ -39,8 +39,9 @@ router.get('/client/*/**', function(req, res, client, urldata) {
       queryData:query_data,
       responseId:response_id
     });
+  } else {
+    res.end('Not Ok.');
   }
-  res.end('Not Ok.');
 });
 
 var app = http.createServer(router);
@@ -52,6 +53,7 @@ var connectedClients = 0;
 io.sockets.on('connection', function(socket) {
   Clients[socket.id] = socket;
   connectedClients++;
+  console.log('New client with id: ' + socket.id);
   socket.emit('id', socket.id);
   socket.on('response', function(data) {
     if (Responses[data.responseId]) {
