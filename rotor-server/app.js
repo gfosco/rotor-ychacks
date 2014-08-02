@@ -16,7 +16,8 @@ var Clients = {};
 var Responses = {};
 
 router.get('/', function(req, res) {
-  res.redirect('/public/index.html');
+  res.writeHead(301, {Location: '/public/index.html'});
+  res.end();
 });
 
 router.get('/public/**', function(req, res) {
