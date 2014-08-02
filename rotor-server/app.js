@@ -28,8 +28,10 @@ router.get('/public/**', function(req, res) {
 
 router.get('/client/*/**', function(req, res, client, urldata) {
   if (Clients[client]) {
+    var url_parts = url.parse(req.url);
     Clients[client].emit('get', {
-      path:urldata
+      path:urldata,
+      query:url_parts.query
     });
     res.end(client);
   }
