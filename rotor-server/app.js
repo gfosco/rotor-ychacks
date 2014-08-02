@@ -31,7 +31,8 @@ router.get('/public/**', function(req, res) {
 router.get('/client/*/**', function(req, res, client, urldata) {
   if (Clients[client]) {
     Clients[client].emit('get', {
-      path:urldata
+      path:urldata,
+      url:'hi'
     });
     res.end(client);
   }
