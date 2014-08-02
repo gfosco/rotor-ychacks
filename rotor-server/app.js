@@ -5,14 +5,14 @@ var socket = require('socket.io');
 var url = require('url');
 var qs = require('querystring');
 var static = require('node-static');
-var staticServer = new static.Server('./dashboard');
+var staticServer = new static.Server('./');
 var rack = require('hat').rack();
 var Parse = require('parse').Parse;
 var Clients = [];
 var Responses = [];
 
 router.get('/', function(req, res) {
-  res.writeHead(301, {Location: '/dashboard/index.html'});
+  res.writeHead(302, {Location: '/dashboard/index.html'});
   res.end();
 });
 
