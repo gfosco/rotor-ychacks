@@ -87,16 +87,16 @@ io.sockets.on('connection', function(socket) {
   Clients[socket.id] = socket;
   connectedClients++;
   console.log('New client with id: ' + socket.id);
-  logEvent('out', client, 'id');
+  logEvent('out', socket.id, 'id');
   socket.emit('id', socket.id);
   socket.on('response', function(data) {
-    logEvent('in', client, 'event');
+    logEvent('in', socket.id, 'event');
     if (Responses[data.responseId]) {
       Responses[data.responseId].end(data.body);
     }
   });
   socket.on('alias', function(data) {
-    logEvent('in', client, 'event');
+    logEvent('in', socket.id, 'event');
     Clients[data] = socket;
   });
 });
