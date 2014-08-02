@@ -1,3 +1,15 @@
+
+var socket = io.connect('http://rtrp.io');
+socket.on('connect', function() {
+  socket.emit('alias', 'dashboard');
+});
+socket.on('log', function(event) {
+  // process the event here
+  // event.client, event.type, event.direction
+  console.log(event);
+});
+
+
 $(function () {
     $(document).ready(function() {
         Highcharts.setOptions({
