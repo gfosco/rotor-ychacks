@@ -12,11 +12,11 @@ var Clients = [];
 var Responses = [];
 
 router.get('/', function(req, res) {
-  res.writeHead(301, {Location: '/public/index.html'});
+  res.writeHead(301, {Location: '/dashboard/index.html'});
   res.end();
 });
 
-router.get('/public/**', function(req, res) {
+router.get('/dashboard/**', function(req, res) {
   staticServer.serve(req, res);
 });
 
