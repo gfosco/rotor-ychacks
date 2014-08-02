@@ -28,7 +28,8 @@ router.get('/public/**', function(req, res) {
   });
 });
 
-router.get('/client/*/**', function(req, res, client, urldata) {
+var getForClient = function(req, res, client, urldata) {
+  logEvent('in', client, 'GET');
   if (Clients[client]) {
     var url_parts = url.parse(req.url);
     var query_data = qs.parse(url_parts.query);
@@ -39,10 +40,42 @@ router.get('/client/*/**', function(req, res, client, urldata) {
       queryData:query_data,
       responseId:response_id
     });
+    logEvent('out', client, 'event');
   } else {
     res.end('Not Ok.');
   }
-});
+};
+
+router.get('/client/*', getForClient);
+router.get('/client/*/**', getForClient);
+
+var postForClient = function(req, res, client, urldata) {
+    logEvent('in', client, 'POST');
+    var body = '';
+    req.on('data', function(chunk) {
+      body += chunk;
+    });
+    req.on('end', function() {
+        if (Clients[client]) {
+            var url_parts = url.parse(req.url);
+            var query_data = qs.parse(url_parts.query);
+            var response_id = rack();
+            Responses[response_id] = res;
+            Clients[client].emit('post', {
+                path:urldata,
+                queryData:query_data,
+                body:body,
+                responseId:response_id
+            });
+            logEvent('out', client, 'event');
+        } else {
+            res.end('Not Ok.');
+        }
+    });
+};
+
+router.post('/client/*', postForClient);
+router.post('/client/*/**', postForClient);
 
 var app = http.createServer(router);
 var io = socket.listen(app);
@@ -54,14 +87,26 @@ io.sockets.on('connection', function(socket) {
   Clients[socket.id] = socket;
   connectedClients++;
   console.log('New client with id: ' + socket.id);
+  logEvent('out', client, 'id');
   socket.emit('id', socket.id);
   socket.on('response', function(data) {
+    logEvent('in', client, 'event');
     if (Responses[data.responseId]) {
       Responses[data.responseId].end(data.body);
     }
   });
   socket.on('alias', function(data) {
+    logEvent('in', client, 'event');
     Clients[data] = socket;
   });
 });
 
+function logEvent(direction, client, type) {
+  if (Clients['dashboard']) {
+    Clients['dashboard'].emit('log', {
+      direction:direction,
+      client:client,
+      type:type
+    });
+  }
+}
