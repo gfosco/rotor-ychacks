@@ -12,7 +12,7 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(response) {
                 console.log(response);
-                if (response == "true") {
+                if (response === true) {
                     $("#success").fadeIn();
                     $('body').css("background-color", "#7ed21c");
                 } else {
