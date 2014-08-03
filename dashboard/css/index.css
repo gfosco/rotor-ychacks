@@ -5,24 +5,12 @@ body {
 	color: #6f6f6f;
 	margin: auto;
 	text-align: center;
-	min-width: 900px; 
 }
 
 .container {
 	margin: auto;
-	max-width: 960px;
 	display: block; 
 	padding: 10px;
-}
-
-header {
-	position: top;
-	width: 100%;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	background-color: #fbfbfb;
-	opacity: 0.95;
-	box-shadow: 0 1px 1px 0 #eaeaea; 
 }
 
 li {
@@ -53,29 +41,23 @@ a {
 	float: right;
 }
 
-button{
-	font-size: 15px;
-	font-weight: normal;
-	padding: 8px;
-	border-radius: 3px;
-	background-color: #22c4e5;
-	border: 1px solid #eee;
-	color: white;
+#activityStream{
+	min-width: 600px;
+	height: 400px;
+	border: 1px silver solid;
+	overflow: hidden;
+	margin: 20px;
 }
 
-button:hover{
-	background-color: #1d9db7;
+#direction{
+	display: inline-block;
+	float: left;
+	margin: 10px;
 }
 
-img{
-	border: 1px solid #eee;
-	padding: 10px;
-	border-radius: 5px;
-	height: 150px;
-	margin-left: 20px;
-}
 
-img:hover{
-	border: 1px solid #ccc;
+#type-chart{
+	display: inline-block;
+	float: left;
+	margin: 10px;
 }
-
