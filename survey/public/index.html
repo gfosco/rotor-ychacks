@@ -22,7 +22,9 @@ function processForm(e) {
   }
   obj.set("rating", rating);
   obj.save().then(function() {
-    location.reload();
+    document.getElementById("form").style.display = "none";
+    document.getElementById("results").style.display = "block";
+
   });
   return false;
 }
@@ -58,6 +60,7 @@ h1 {
 #results {
   padding: 30px;
   text-align: center;
+  display: none;
 }
 
 .center {
