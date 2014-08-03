@@ -1,0 +1,193 @@
+html,body {
+  height: 100%;
+}
+
+body {
+  background: url(background.jpg) no-repeat;
+  background-size: cover;
+  font-family: "Helvetica Neue";
+}
+
+.container {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.5);
+  margin: 50px auto;
+  overflow: hidden;
+  width: 600px;
+
+}
+
+h1 {
+  background: #2a8dfd;
+  color: #fff;
+  font-family: "Helvetica Neue";
+  font-weight: 100;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+#results {
+  padding: 30px;
+  text-align: center;
+  display: none;
+}
+
+.center {
+  text-align: center;
+}
+
+input[type="radio"] {
+    display:none;
+}
+input[type="radio"] + label span {
+    display:inline-block;
+    width:83px;
+    height:161px;
+    margin:0;
+    background:url(sprite.png) no-repeat;
+    cursor:pointer;
+}
+
+#radio1 + label span {
+  background:url(sprite.png) 0 0 no-repeat;
+}
+
+#radio1 + label span:hover {
+  background:url(sprite.png) 0 -161px no-repeat;
+  opacity: .5;
+}
+
+#radio2 + label span {
+  background:url(sprite.png) -83px 0 no-repeat;
+}
+
+#radio2 + label span:hover {
+  background:url(sprite.png) -83px -161px no-repeat;
+  opacity: .5;
+}
+
+#radio3 + label span {
+  background:url(sprite.png) -166px 0 no-repeat;
+}
+
+#radio3 + label span:hover {
+  background:url(sprite.png) -166px -161px no-repeat;
+  opacity: .5;
+}
+
+#radio4 + label span {
+  background:url(sprite.png) -249px 0 no-repeat;
+}
+
+#radio4 + label span:hover {
+  background:url(sprite.png) -249px -161px no-repeat;
+  opacity: .5;
+}
+
+#radio5 + label span {
+  background:url(sprite.png) -332px 0 no-repeat;
+}
+
+#radio5 + label span:hover {
+  background:url(sprite.png) -332px -161px no-repeat;
+  opacity: .5;
+}
+
+#radio1:checked + label span, #radio1 + label span:active {
+    background:url(sprite.png) 0 -161px no-repeat;
+    opacity: 1;
+}
+
+
+#radio2:checked + label span, #radio2 + label span:active {
+    background:url(sprite.png) -83px -161px no-repeat;
+    opacity: 1;
+}
+
+#radio3:checked + label span, #radio3 + label span:active {
+    background:url(sprite.png) -166px -161px no-repeat;
+    opacity: 1;
+}
+
+#radio4:checked + label span, #radio4 + label span:active {
+    background:url(sprite.png) -249px -161px no-repeat;
+    opacity: 1;
+}
+
+#radio5:checked + label span, #radio5 + label span:active {
+    background:url(sprite.png) -332px -161px no-repeat;
+    opacity: 1;
+}
+
+input[type="submit"] {
+  background: #f60;
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  font-weight: 800;
+  padding: 10px 16px;
+  text-transform: uppercase;
+  -webkit-appearance: none;
+}
+
+#results {
+  color: #333;
+  font-size: 40px;
+  font-weight: 100;
+  padding: 50px 0;
+}
+
+table {
+  margin: 0 auto;
+  width: 420px;
+}
+
+  table td {
+    width: 84px;
+    text-align: center;
+  }
+
+  #rating4 {
+    width: 80px;
+  }
+
+  #rating5 {
+    width: 88px;
+  }
+
+  table td span {
+    background: #555;
+    border-radius: 2px;
+    color: #fff;
+    display: inline-block;
+    font-family: "Courier New";
+    font-size: 18px;
+    font-weight: bold;
+    padding: 3px 6px;
+  }
+
+
+
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .container {
+    margin: 0;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 20px;
+    -webkit-text-stroke: 0.35px;
+  }
+  
+  .zoom {
+    zoom: .65;
+  }
+}
