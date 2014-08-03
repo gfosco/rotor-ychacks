@@ -1,5 +1,5 @@
 Rotor
-Give any device a URL
+Give any device a URL and make it a web server.
 
 Existing Backend-as-a-service offerings are great, but we often find ourselves needing "one more thing" that isn't offered.  So we stand up a server, and we're back in the same situation, having to manage infrastructure.  We wanted to build a service that is flexible, that can be used in conjunction with other services, and offer some completely new features.
 
