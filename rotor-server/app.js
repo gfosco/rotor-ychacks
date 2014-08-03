@@ -67,6 +67,7 @@ router.get('/generateLogData', function(req, res) {
   logEvent('in', 'test', 'event');
   logEvent('in', 'test', 'POST');
   logEvent('in', 'test', 'GET');
+  res.end('ok');
 });
 
 router.get('/WebDemo1/**', function(req, res) {
