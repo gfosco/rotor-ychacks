@@ -2,7 +2,13 @@
 <resources>
 
     <string name="app_name">RotoryPhone</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline...</string>
+    <string name="dont_call">\"Stop calling me, you creep.\"</string>
+    <string name="call_back">\"I\'ll call you later.\"</string>
+    <string name="cant_talk">\"I can\'t talk right now.\"</string>
+    <string name="busy">Busy signal.</string>
+    <string name="ignore">Hang up.</string>
 
 </resources>

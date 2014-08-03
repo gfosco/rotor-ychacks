@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/cant_talk"
+        android:title="@string/cant_talk"></item>
+    <item
+        android:id="@+id/call_back"
+        android:title="@string/call_back"></item>
+    <item
+        android:id="@+id/dont_call"
+        android:title="@string/dont_call"></item>
+    <item
+        android:id="@+id/busy"
+        android:title="@string/busy"></item>
+    <item
+        android:id="@+id/ignore"
+        android:title="@string/ignore"></item>
+</menu>
