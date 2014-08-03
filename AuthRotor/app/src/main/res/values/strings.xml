@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AuthRotor</string>
+    <string name="accept">Yes, log me in already.</string>
+    <string name="decline">No</string>
+
+</resources>
