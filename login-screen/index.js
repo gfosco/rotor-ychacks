@@ -13,8 +13,8 @@ $(document).ready(function() {
             success: function(response) {
                 console.log(response);
                 if (response === true) {
-                    $('#loading').fadeOut();
-                    $("#success").fadeIn();
+                    $('#loading').hide();
+                    $("#success").show();
                     $('body').css("background-color", "#7ed21c");
                 } else {
                     $('#loading').fadeOut();
