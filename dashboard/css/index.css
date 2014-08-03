@@ -7,57 +7,44 @@ body {
 	text-align: center;
 }
 
+header{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	text-align: left;
+	background-color: #f7f7f7;
+}
+
+header h1{
+	margin-left: 40px;
+}
+
 .container {
 	margin: auto;
 	display: block; 
 	padding: 10px;
-}
-
-li {
-	font-family: "proxima-nova", sans-serif;
-	text-transform: uppercase;
-	font-size: 14px;
-	color: #6f6f6f;
-	padding: 10px 0 0 30px;
-	display: inline;
-	float: right;
-}
-
-a:hover{
-	color: #1d9db7;
-}
-
-a {
-	text-decoration: none;
-	color: #6f6f6f;
-	font-weight: 400; 
-}
-
-.align-left{
-	float: left;
-}
-
-.align-right{
-	float: right;
+	text-align: center;
+	margin-top: 20px;
 }
 
 #activityStream{
-	min-width: 600px;
+	min-width: 800px;
 	height: 400px;
 	border: 1px silver solid;
-	overflow: hidden;
 	margin: 20px;
-}
-
-#direction{
 	display: inline-block;
-	float: left;
-	margin: 10px;
+	overflow: scroll;
 }
 
+.container-top{
+	margin-top: 100px;
+	text-align: center;
+}
 
-#type-chart{
+#direction, #type-chart{
 	display: inline-block;
-	float: left;
-	margin: 10px;
+	float: center;
+	margin: auto;
+	margin:  10px;
 }
+

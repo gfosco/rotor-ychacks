@@ -1,51 +1,57 @@
 $(document).ready(function() {
 
-    var numIn  = 0, numOut = 0;  // count of Direction Out
-    var numPost = 0, numGet = 0, numEvent = 0;
+    var numIn  = 0, numOut = 0, numDisconnect = 0; 
+    var numPost = 0, numGet = 0, numEvent = 0, numID = 0, numDisconnect2 = 0;
+    var initialTime = new Date().getTime();
     var direction, client, type;
     var socket = io.connect('http://rtrp.io');
 
     directionChart = new Highcharts.Chart({
         chart: {
+            type: 'area',
             renderTo: 'direction',
-            type: 'bar',
         },
         title: {
             text: 'Direction Data'
         },
         xAxis: {
-            categories: ['In', 'Out'],
-        },
-        yAxis: {
-            min: 0,
-            labels: {
-                overflow: 'justify'
+            // categories: ["In", "Out"],
+            tickmarkPlacement: 'on',
+            title: {
+                text: 'Milliseconds'
             }
         },
+        yAxis: {
+            title: {
+                text: 'Data Points'
+            },
+        },
         plotOptions: {
-            bar: {
-                dataLabels: {
-                    enabled: true
+            area: {
+                // stacking: 'normal',
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 2,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
                 }
             }
         },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'top',
-            x: -40,
-            y: 100,
-            floating: true,
-            borderWidth: 1,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
-            shadow: true
-        },
-        credits: {
-            enabled: false
-        },
         series: [{
-            data: [0, 0],
-            showInLegend: false
+            name: 'In',
+            data: [0]
+        }, {
+            name: 'Out',
+            data: [0]
+        
+        }, {
+            name: 'Disconnect',
+            data: [0]
+        
         }]
     });
 
@@ -53,45 +59,50 @@ $(document).ready(function() {
     typeChart = new Highcharts.Chart({
         chart: {
             renderTo: 'type-chart',
-            type: 'bar',
+            type: 'area',
         },
         title: {
             text: 'Type Data'
         },
         xAxis: {
-            categories: ['Get', 'Post', 'Event'],
+            tickmarkPlacement: 'on',
+            title: 'Milliseconds',
         },
         yAxis: {
-            min: 0,
-            labels: {
-                overflow: 'justify'
-            }
+            title: "Points"
         },
         plotOptions: {
-            bar: {
-                dataLabels: {
-                    enabled: true
+            area: {
+                stacking: 'normal',
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 2,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
                 }
             }
         },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'top',
-            x: -40,
-            y: 100,
-            floating: true,
-            borderWidth: 1,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
-            shadow: true
-        },
-        credits: {
-            enabled: false
-        },
         series: [{
-            data: [0, 0, 0],
-            showInLegend: false
-        }]
+                name: 'Get',
+                data: [0]
+            }, {
+                name: 'Post',
+                data: [0]
+            },
+            {
+                name: 'Event',
+                data: [0]
+            },{
+                name: 'ID',
+                data: [0]
+            },{
+                name: 'Disconnect',
+                data: [0]
+            }]
     });
 
     socket.on('connect', function() {
@@ -105,7 +116,9 @@ $(document).ready(function() {
         direction = event.direction;
         client = event.client;
         eventType = event.type;
-        $("#activityStream").append("<p>Type:" + type + ", Direction: " + direction + ", Client: " + client + "</p>");
+        currentTime = event.time;
+
+        var milliseconds = (currentTime - initialTime);
 
         // update direction In and Out count
         if (direction == "in"){
@@ -115,9 +128,10 @@ $(document).ready(function() {
             numOut += 1 ;
         }
         else{
-            console.log("something went wrong");
+            numDisconnect += 1;
         }
 
+        var numGet = 1;
         // Update type GET and POST
         if (eventType == "GET"){
             numGet += 1;
@@ -128,9 +142,26 @@ $(document).ready(function() {
         else if (eventType == "event"){
             numEvent += 1;
         }
-        
-        typeChart.series[0].setData([numGet, numPost, numEvent]);
-        directionChart.series[0].setData([numIn, numOut]);
+        else if (eventType == "id"){
+            numID += 1;
+        }
+        else{
+            console.log("disconnected!");
+        }
+
+        directionChart.series[0].addPoint([milliseconds, numIn]);
+        directionChart.series[1].addPoint([milliseconds, numOut]);
+        directionChart.series[2].addPoint([milliseconds, numDisconnect]);
+
+
+        typeChart.series[0].addPoint([milliseconds, numGet]);
+        typeChart.series[1].addPoint([milliseconds, numPost]);
+        typeChart.series[2].addPoint([milliseconds, numEvent]);
+        typeChart.series[3].addPoint([milliseconds, numID]);
+        typeChart.series[4].addPoint([milliseconds, numDisconnect2]);
+
+        $("#activityStream").append("<p>Type:" + eventType + ", Direction: " + direction + ", Client: " + client + "</p>");
+
     });
 
 }); 
