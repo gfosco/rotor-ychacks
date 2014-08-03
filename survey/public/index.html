@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="//www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
 <script>
 Parse.initialize("vPyy9IY23HMHU8WZgb62EwMJ33veycqgI6eWdmVD", "SeNqQAhaCoPxmERLybY9TZpScG0faF4Y8AiUQumf");
 
@@ -26,18 +27,204 @@ function processForm(e) {
   return false;
 }
 </script>
+
+<style>
+
+body {
+  background: url(background.jpg) no-repeat;
+  background-size: cover;
+}
+
+.container {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.5);
+  margin: 50px auto;
+  overflow: hidden;
+  width: 600px;
+
+}
+
+h1 {
+  background: #2a8dfd;
+  color: #fff;
+  font-family: "Helvetica Neue";
+  font-weight: 100;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+#results {
+  padding: 30px;
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+}
+
+input[type="radio"] {
+    display:none;
+}
+input[type="radio"] + label span {
+    display:inline-block;
+    width:83px;
+    height:161px;
+    margin:0;
+    background:url(sprite.png) no-repeat;
+    cursor:pointer;
+}
+
+#radio1 + label span {
+  background:url(sprite.png) 0 0 no-repeat;
+}
+
+#radio1:hover + label span {
+  background:url(sprite.png) 0 -161px no-repeat;
+  opacity: .5;
+}
+
+#radio2 + label span {
+  background:url(sprite.png) -83px 0 no-repeat;
+}
+
+#radio2:hover + label span {
+  background:url(sprite.png) -83px -161px no-repeat;
+  opacity: .5;
+}
+
+#radio3 + label span {
+  background:url(sprite.png) -166px 0 no-repeat;
+}
+
+#radio3:hover + label span {
+  background:url(sprite.png) -166px -161px no-repeat;
+  opacity: .5;
+}
+
+#radio4 + label span {
+  background:url(sprite.png) -249px 0 no-repeat;
+}
+
+#radio4:hover + label span {
+  background:url(sprite.png) -249px -161px no-repeat;
+  opacity: .5;
+}
+
+#radio5 + label span {
+  background:url(sprite.png) -332px 0 no-repeat;
+}
+
+#radio5:hover + label span {
+  background:url(sprite.png) -332px -161px no-repeat;
+  opacity: .5;
+}
+
+#radio1:checked + label span, #radio1:active + label span {
+    background:url(sprite.png) 0 -161px no-repeat;
+    opacity: 1;
+}
+
+
+#radio2:checked + label span, #radio2:active + label span {
+    background:url(sprite.png) -83px -161px no-repeat;
+    opacity: 1;
+}
+
+#radio3:checked + label span, #radio3:active + label span {
+    background:url(sprite.png) -166px -161px no-repeat;
+    opacity: 1;
+}
+
+#radio4:checked + label span, #radio4:active + label span {
+    background:url(sprite.png) -249px -161px no-repeat;
+    opacity: 1;
+}
+
+#radio5:checked + label span, #radio5:active + label span {
+    background:url(sprite.png) -332px -161px no-repeat;
+    opacity: 1;
+}
+
+input[type="submit"] {
+  background: #f60;
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  font-weight: 800;
+  padding: 10px 16px;
+  text-transform: uppercase;
+}
+
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  .container {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+
+</style>
 </head>
 <body>
 
-<h1>On a scale of 1-5, how awesome has your YC Hacks experience been?</h1>
-<form id="survey-form" onsubmit="return processForm()">
-<input type="radio" name="rating" value="1" id="radio1">1<br>
-<input type="radio" name="rating" value="2" id="radio2">2<br>
-<input type="radio" name="rating" value="3" id="radio3">3<br>
-<input type="radio" name="rating" value="4" id="radio4">4<br>
-<input type="radio" name="rating" value="5" id="radio5">5<br>
-<input type="submit" value="Submit" />
-</form>
+<div class="container">
+  <h1>Rate your YC Hacks experience.</h1>
+
+  <div id="form">
+
+      <form id="survey-form" onsubmit="return processForm()">
+
+      <div class="center">
+        <br>
+        <br>
+
+        <input type="radio" id="radio1" name="rating" />
+        <label for="radio1"><span></span></label>
+
+        <input type="radio" id="radio2" name="rating" />
+        <label for="radio2"><span></span></label>
+
+        <input type="radio" id="radio3" name="rating" />
+        <label for="radio3"><span></span></label>
+
+        <input type="radio" id="radio4" name="rating" />
+        <label for="radio4"><span></span></label>
+
+        <input type="radio" id="radio5" name="rating" />
+        <label for="radio5"><span></span></label>
+        <br>
+        <br>
+        <input type="submit" value="Submit" />
+        <br>
+        <br>
+
+
+      </div>
+
+
+      </form>
+  </div>
+
+  <div id="results">
+    Thanks!
+  </div>
+</div>
+
+<br>
+<br>
+
+
+  <div class="center">
+    <img src="poweredby.png">
+  </div>
 
 </body>
 </html>
