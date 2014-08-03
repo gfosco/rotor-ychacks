@@ -158,7 +158,7 @@ public class PhonePrompt extends Activity {
                         return BitmapFactory.decodeStream(stream);
                     }
                 }
-                URL url = new URL("http://www.gravatar.com/avatar/" + md5 + "?d=wavatar");
+                URL url = new URL("http://www.gravatar.com/avatar/" + md5 + "?d=identicon&s=400");
                 return BitmapFactory.decodeStream(url.openStream());
             }
         });
