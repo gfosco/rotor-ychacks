@@ -61,8 +61,9 @@ router.post('/client/*', postForClient);
 router.post('/client/*/**', postForClient);
 
 
-router.get('/', function(req, res) {
-  staticServer.serveFile('/index.html', 200, {}, req, res);
+router.get('/**', function(req, res) {
+  staticServer.serve(req, res);
+//  staticServer.serveFile('/index.html', 200, {}, req, res);
 });
 
 
