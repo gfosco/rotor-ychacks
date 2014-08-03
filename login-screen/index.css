@@ -1,0 +1,48 @@
+html, body {
+	padding: 0;
+	margin: 0;
+	font-family: "Helvetica Neue", Helvetica;
+	font-weight: 100;
+	font-size: 16px;
+	background-color: #00a5ff;
+	height: calc(100% - 10px);
+	border-bottom: 10px white solid;
+}
+
+#login{
+	position: absolute;
+	bottom: 80px;
+	left: 60px;
+}
+
+#success{
+	position: absolute;
+	top: calc(50% - 50px);
+	left: calc(50% - 50px);
+}
+
+#loading{
+	position: absolute;
+	top: calc(50% - 50px);
+	left: calc(50% - 50px);
+}
+
+input{
+	font-family: "Helvetica Neue", Helvetica;
+	font-weight: 100;
+	display: block;
+	font-size: 22px;
+	font-color: silver;
+	border-radius: 5px;
+	border: 0;
+	padding: 16px;
+	margin-top: 10px;
+	width: 300px;
+}
+
+
+img{
+	height: 100px;
+}
+
+
