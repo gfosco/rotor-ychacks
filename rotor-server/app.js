@@ -62,7 +62,7 @@ router.post('/client/*/**', postForClient);
 
 
 router.get('/', function(req, res) {
-  staticServer.serveFile('dashboard/index.html', 200, {}, req, res);
+  staticServer.serveFile('/index.html', 200, {}, req, res);
 });
 
 
