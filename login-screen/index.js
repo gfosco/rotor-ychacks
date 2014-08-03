@@ -15,10 +15,12 @@ $(document).ready(function() {
                         $('#loading').hide();
                         $("#success").show();
                         $('body').css("background-color", "#7ed21c");
+                        $('body').css("border-bottom", "none");
                     } else {
                         $('#loading').hide();
                         $('#failure').show();
                         $('body').css("background-color", "#cb2b2b");
+                        $('body').css("border-bottom", "none");
                         //$('#loading').fadeOut();
                         //$('#login').fadeIn();
                     }
