@@ -21,6 +21,13 @@ html, body {
 	left: calc(50% - 50px);
 }
 
+#failure {
+	position: absolute;
+	top: calc(50% - 50px);
+	left: calc(50% - 50px);
+	text-align: center;
+}
+
 #loading{
 	position: absolute;
 	top: calc(50% - 50px);

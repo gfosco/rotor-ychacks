@@ -16,8 +16,11 @@ $(document).ready(function() {
                         $("#success").show();
                         $('body').css("background-color", "#7ed21c");
                     } else {
-                        $('#loading').fadeOut();
-                        $('#login').fadeIn();
+                        $('#loading').hide();
+                        $('#failure').show();
+                        $('body').css("background-color", "#cb2b2b");
+                        //$('#loading').fadeOut();
+                        //$('#login').fadeIn();
                     }
                 },
                 error: function(response){
