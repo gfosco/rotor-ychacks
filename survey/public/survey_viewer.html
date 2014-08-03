@@ -10,6 +10,7 @@
 <script>
 Parse.initialize("vPyy9IY23HMHU8WZgb62EwMJ33veycqgI6eWdmVD", "SeNqQAhaCoPxmERLybY9TZpScG0faF4Y8AiUQumf");
 
+var ratings = [0, 0, 0, 0, 0];
 var socket = io.connect('http://rtrp.io');
 socket.on('connect', function() {
   socket.emit('alias', 'RotorSurvey');
@@ -23,6 +24,9 @@ socket.on("get", function(args) {
   });
 
   var rating = args.queryData.rating;
+  ratings[rating - 1]++;
+  var element = document.getElementById("rating" + rating);
+  element.innerHTML = "<span>" + ratings[rating - 1] + "</span>";
 });
 </script>
 </head>
@@ -39,7 +43,7 @@ socket.on("get", function(args) {
       <div class="center">
         <br>
 
-        <div class="zoom">
+        <div class="zoom form-completed">
           <input type="radio" id="radio1" name="rating" />
           <label for="radio1"><span></span></label>
 
@@ -57,16 +61,15 @@ socket.on("get", function(args) {
 
           <table>
           <tr>
-          <td>0</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
+          <td id="rating1"><span>0</span></td>
+          <td id="rating2"><span>0</span></td>
+          <td id="rating3"><span>0</span></td>
+          <td id="rating4"><span>0</span></td>
+          <td id="rating5"><span>0</span></td>
           </tr>
           </table>
         </div>
         <br>
-        <input type="submit" value="Submit" />
         <br>
         <br>
 
