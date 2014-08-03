@@ -4,7 +4,8 @@ var router = require('choreographer').router();
 var socket = require('socket.io');
 var url = require('url');
 var qs = require('querystring');
-var buffet = require('buffet')({root:'./public'});
+var nodeStatic = require('nodeStatic');
+var staticServer = new nodeStatic.Server('./dashboard');
 var rack = require('hat').rack();
 var Parse = require('parse').Parse;
 var Clients = [];
@@ -60,11 +61,8 @@ router.post('/client/*', postForClient);
 router.post('/client/*/**', postForClient);
 
 
-router.get('/**', function(req, res, dur) {
-  console.log('Page requested, ' + dur);
-  buffet(req, res, function() {
-    buffet.notFound(req, res);
-  });
+router.get('/', function(req, res) {
+  staticServer.serveFile('/index.html', 200, {}, req, res);
 });
 
 
