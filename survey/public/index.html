@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="//www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+<script>
+Parse.initialize("vPyy9IY23HMHU8WZgb62EwMJ33veycqgI6eWdmVD", "SeNqQAhaCoPxmERLybY9TZpScG0faF4Y8AiUQumf");
+
+function processForm(e) {
+  var obj = new Parse.Object("SurveyAnswer");
+  var rating = 0;
+  if (document.getElementById("radio1").checked) {
+    rating = 1;
+  } else if (document.getElementById("radio2").checked) {
+    rating = 2;
+  } else if (document.getElementById("radio3").checked) {
+    rating = 3;
+  } else if (document.getElementById("radio4").checked) {
+    rating = 4;
+  } else if (document.getElementById("radio5").checked) {
+    rating = 5;
+  }
+  obj.set("rating", rating);
+  obj.save().then(function() {
+    location.reload();
+  });
+  return false;
+}
+</script>
+</head>
+<body>
+
+<h1>On a scale of 1-5, how awesome has your YC Hacks experience been?</h1>
+<form id="survey-form" onsubmit="return processForm()">
+<input type="radio" name="rating" value="1" id="radio1">1<br>
+<input type="radio" name="rating" value="2" id="radio2">2<br>
+<input type="radio" name="rating" value="3" id="radio3">3<br>
+<input type="radio" name="rating" value="4" id="radio4">4<br>
+<input type="radio" name="rating" value="5" id="radio5">5<br>
+<input type="submit" value="Submit" />
+</form>
+
+</body>
+</html>
