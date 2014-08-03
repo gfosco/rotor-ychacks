@@ -105,7 +105,7 @@ function logEvent(direction, client, type) {
       direction:direction,
       client:client,
       type:type,
-      time:d.getUTCSeconds()
+      time:d.UTC()
     });
   }
 }
