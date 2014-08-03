@@ -10,6 +10,8 @@
 
 @implementation PIRAppDelegate
 
+@synthesize client;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
@@ -17,15 +19,34 @@
     [PFUser enableAutomaticUser];
     PFUser *current = [PFUser currentUser];
     [current incrementKey:@"runCount"];
-    [current saveEventually];
+    [current saveInBackground];
+    self.client = [[SISocketIOClient alloc] initWithHost:@"rtrp.io" onPort:80];
+    self.client.delegate = self;
+    [self.client open];
     return YES;
 }
 							
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    NSLog(@"Did become active.");
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
 }
 
+-(void)socketIOClientOnOpen:(SISocketIOClient *)client{
+    NSLog(@"Connected to Socket.IO");
+    //[self.client send:[@"[\"alias\",\"pirotor\"]" dataUsingEncoding:NSUTF8StringEncoding]];
+}
+
+-(void)socketIOClientOnClose:(SISocketIOClient *)client{
+    NSLog(@"Client disconnected.");
+}
+
+-(void)socketIOClientOnError:(SISocketIOClient *)client error:(NSError *)error{
+    NSLog(error.description);
+}
+
+-(void)socketIOClientOnPacket:(SISocketIOClient *)client packet:(SIEngineIOPacket *)packet{
+    NSLog(@"What");
+    NSLog(packet.message);
+}
 
 @end

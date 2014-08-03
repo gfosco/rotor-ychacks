@@ -25,5 +25,5 @@ typedef enum SIEngineIOPacketType : NSInteger {
 @interface SIEngineIOPacket : NSObject
 @property (nonatomic) SIEngineIOPacketType type;
 @property (nonatomic,strong) NSData *data;
--(NSDictionary*)message;
+@property (nonatomic, strong) NSDictionary *message;
 @end

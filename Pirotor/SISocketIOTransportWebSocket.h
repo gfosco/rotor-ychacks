@@ -7,7 +7,7 @@
 //
 
 #import "SISocketIOTransport.h"
-#import <SocketRocket/SRWebSocket.h>
+#import "SocketRocket/SRWebSocket.h"
 @interface SISocketIOTransportWebSocket : SISocketIOTransport<SISocketIOTransport,SRWebSocketDelegate>
 
 @end

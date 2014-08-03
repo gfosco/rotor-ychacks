@@ -12,6 +12,7 @@
 
 -(NSDictionary*)message{
     NSError *error;
+    NSLog(@"Got here.");
     
     NSDictionary* message = [NSJSONSerialization JSONObjectWithData:self.data options:NSJSONReadingMutableContainers error:&error];
     

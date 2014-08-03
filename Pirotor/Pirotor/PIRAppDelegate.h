@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PIRAppDelegate : UIResponder <UIApplicationDelegate>
+@interface PIRAppDelegate : UIResponder <UIApplicationDelegate, SISocketIOClientDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) SISocketIOClient *client;
 
 @end

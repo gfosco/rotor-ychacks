@@ -7,7 +7,7 @@
 //
 
 #import "SISocketIOTransportPolling.h"
-#import <AFNetworking/AFNetworking.h>
+#import "AFNetworking/AFNetworking.h"
 @interface SISocketIOTransportPolling ()
 @property (nonatomic,strong) AFHTTPRequestOperationManager* manager;
 @end

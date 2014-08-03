@@ -11,7 +11,6 @@
 @implementation SIEngineIOParser
 
 - (void)parsePayloadBinary:(NSData*)message  completion:(void (^)(SIEngineIOPacket*))completion{
-    NSLog([message description]);
     NSMutableArray *buffers = [NSMutableArray array];
     
     NSData *bufferTail = [NSData dataWithData:message];
@@ -53,7 +52,6 @@
     }
  
     for(NSData *buffer in buffers){
-        //NSLog(@"message: %@",[[NSString alloc] initWithData:buffer encoding:NSUTF8StringEncoding]);
         SIEngineIOPacket *packet = [self parsePacketBinary:buffer];
         completion(packet);
     }

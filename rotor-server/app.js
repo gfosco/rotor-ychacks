@@ -5,7 +5,8 @@ var socket = require('socket.io');
 var url = require('url');
 var qs = require('querystring');
 var nodeStatic = require('node-static');
-var staticServer = new nodeStatic.Server('../dashboard');
+var dashboardServer = new nodeStatic.Server('../dashboard');
+var webdemoServer = new nodeStatic.Server('../');
 var rack = require('hat').rack();
 var Parse = require('parse').Parse;
 var Clients = [];
@@ -60,8 +61,12 @@ var postForClient = function(req, res, client, urldata) {
 router.post('/client/*', postForClient);
 router.post('/client/*/**', postForClient);
 
+router.get('/WebDemo1/**', function(req, res) {
+  webdemoServer.serve(req, res);
+});
+
 router.get('/**', function(req, res) {
-  staticServer.serve(req, res);
+  dashboardServer.serve(req, res);
 });
 
 var app = http.createServer(router);

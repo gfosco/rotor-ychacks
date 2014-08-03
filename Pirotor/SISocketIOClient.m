@@ -160,6 +160,7 @@
 -(void)onHandshake:(SISocketIOTransport*)transport packet:(SIEngineIOPacket*)packet{
     
     if(packet.type == SIEngineIOPacketTypeOpen){
+        
         self.sid =[packet.message objectForKey:@"sid"];
         self.upgrades = [self filterUpgrades:[packet.message objectForKey:@"upgrades"]];
         self.pingInterval =[[packet.message objectForKey:@"pingInterval"] integerValue];
