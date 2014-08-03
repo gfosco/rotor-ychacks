@@ -32,6 +32,10 @@ function processForm(e) {
 
 <style>
 
+html,body {
+  height: 100%;
+}
+
 body {
   background: url(background.jpg) no-repeat;
   background-size: cover;
@@ -84,7 +88,7 @@ input[type="radio"] + label span {
   background:url(sprite.png) 0 0 no-repeat;
 }
 
-#radio1:hover + label span {
+#radio1 + label span:hover {
   background:url(sprite.png) 0 -161px no-repeat;
   opacity: .5;
 }
@@ -93,7 +97,7 @@ input[type="radio"] + label span {
   background:url(sprite.png) -83px 0 no-repeat;
 }
 
-#radio2:hover + label span {
+#radio2 + label span:hover {
   background:url(sprite.png) -83px -161px no-repeat;
   opacity: .5;
 }
@@ -102,7 +106,7 @@ input[type="radio"] + label span {
   background:url(sprite.png) -166px 0 no-repeat;
 }
 
-#radio3:hover + label span {
+#radio3 + label span:hover {
   background:url(sprite.png) -166px -161px no-repeat;
   opacity: .5;
 }
@@ -111,7 +115,7 @@ input[type="radio"] + label span {
   background:url(sprite.png) -249px 0 no-repeat;
 }
 
-#radio4:hover + label span {
+#radio4 + label span:hover {
   background:url(sprite.png) -249px -161px no-repeat;
   opacity: .5;
 }
@@ -120,33 +124,33 @@ input[type="radio"] + label span {
   background:url(sprite.png) -332px 0 no-repeat;
 }
 
-#radio5:hover + label span {
+#radio5 + label span:hover {
   background:url(sprite.png) -332px -161px no-repeat;
   opacity: .5;
 }
 
-#radio1:checked + label span, #radio1:active + label span {
+#radio1:checked + label span, #radio1 + label span:active {
     background:url(sprite.png) 0 -161px no-repeat;
     opacity: 1;
 }
 
 
-#radio2:checked + label span, #radio2:active + label span {
+#radio2:checked + label span, #radio2 + label span:active {
     background:url(sprite.png) -83px -161px no-repeat;
     opacity: 1;
 }
 
-#radio3:checked + label span, #radio3:active + label span {
+#radio3:checked + label span, #radio3 + label span:active {
     background:url(sprite.png) -166px -161px no-repeat;
     opacity: 1;
 }
 
-#radio4:checked + label span, #radio4:active + label span {
+#radio4:checked + label span, #radio4 + label span:active {
     background:url(sprite.png) -249px -161px no-repeat;
     opacity: 1;
 }
 
-#radio5:checked + label span, #radio5:active + label span {
+#radio5:checked + label span, #radio5 + label span:active {
     background:url(sprite.png) -332px -161px no-repeat;
     opacity: 1;
 }
@@ -162,6 +166,7 @@ input[type="submit"] {
   font-weight: 800;
   padding: 10px 16px;
   text-transform: uppercase;
+  -webkit-appearance: none;
 }
 
 #results {
@@ -172,12 +177,23 @@ input[type="submit"] {
 }
 
 
+
+
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
   .container {
     margin: 0;
     width: 100%;
+  }
+
+  h1 {
+    font-size: 20px;
+    -webkit-text-stroke: 0.35px;
+  }
+  
+  .zoom {
+    zoom: .65;
   }
 }
 
@@ -195,23 +211,23 @@ and (max-device-width : 480px) {
 
       <div class="center">
         <br>
-        <br>
 
-        <input type="radio" id="radio1" name="rating" />
-        <label for="radio1"><span></span></label>
+        <div class="zoom">
+          <input type="radio" id="radio1" name="rating" />
+          <label for="radio1"><span></span></label>
 
-        <input type="radio" id="radio2" name="rating" />
-        <label for="radio2"><span></span></label>
+          <input type="radio" id="radio2" name="rating" />
+          <label for="radio2"><span></span></label>
 
-        <input type="radio" id="radio3" name="rating" />
-        <label for="radio3"><span></span></label>
+          <input type="radio" id="radio3" name="rating" />
+          <label for="radio3"><span></span></label>
 
-        <input type="radio" id="radio4" name="rating" />
-        <label for="radio4"><span></span></label>
+          <input type="radio" id="radio4" name="rating" />
+          <label for="radio4"><span></span></label>
 
-        <input type="radio" id="radio5" name="rating" />
-        <label for="radio5"><span></span></label>
-        <br>
+          <input type="radio" id="radio5" name="rating" />
+          <label for="radio5"><span></span></label>
+        </div>
         <br>
         <input type="submit" value="Submit" />
         <br>
