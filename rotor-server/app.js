@@ -61,6 +61,14 @@ var postForClient = function(req, res, client, urldata) {
 router.post('/client/*', postForClient);
 router.post('/client/*/**', postForClient);
 
+router.get('/generateLogData', function(req, res) {
+  logEvent('in', 'test', 'id');
+  logEvent('out', 'test', 'event');
+  logEvent('in', 'test', 'event');
+  logEvent('in', 'test', 'POST');
+  logEvent('in', 'test', 'GET');
+});
+
 router.get('/WebDemo1/**', function(req, res) {
   webdemoServer.serve(req, res);
 });
@@ -98,6 +106,7 @@ io.sockets.on('connection', function(socket) {
   });
   socket.on('disconnect', function() {
     connectedClients--;
+    delete Clients[socket.id];
     logEvent('disconnect', socket.id, 'disconnect');
   });
 });
