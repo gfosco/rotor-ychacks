@@ -4,6 +4,9 @@
 <script src="//www.parsecdn.com/js/parse-1.2.19.min.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+<link rel="stylesheet" href="survey.css">
+
 <script>
 Parse.initialize("vPyy9IY23HMHU8WZgb62EwMJ33veycqgI6eWdmVD", "SeNqQAhaCoPxmERLybY9TZpScG0faF4Y8AiUQumf");
 
@@ -24,6 +27,69 @@ socket.on("get", function(args) {
 </script>
 </head>
 <body>
+
+
+<div class="container">
+  <h1>Rate your YC Hacks experience.</h1>
+
+  <div id="form">
+
+      <form id="survey-form" onsubmit="return processForm()">
+
+      <div class="center">
+        <br>
+
+        <div class="zoom">
+          <input type="radio" id="radio1" name="rating" />
+          <label for="radio1"><span></span></label>
+
+          <input type="radio" id="radio2" name="rating" />
+          <label for="radio2"><span></span></label>
+
+          <input type="radio" id="radio3" name="rating" />
+          <label for="radio3"><span></span></label>
+
+          <input type="radio" id="radio4" name="rating" />
+          <label for="radio4"><span></span></label>
+
+          <input type="radio" id="radio5" name="rating" />
+          <label for="radio5"><span></span></label>
+
+          <table>
+          <tr>
+          <td>0</td>
+          <td>10</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          </tr>
+          </table>
+        </div>
+        <br>
+        <input type="submit" value="Submit" />
+        <br>
+        <br>
+
+
+      </div>
+
+
+      </form>
+  </div>
+
+  <div id="results">
+    Thanks!
+  </div>
+</div>
+
+<br>
+<br>
+
+
+  <div class="center">
+    <img src="poweredby.png">
+  </div>
+
 
 </body>
 </html>
