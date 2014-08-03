@@ -95,28 +95,28 @@ input[type="radio"] + label span {
   opacity: .5;
 }
 
-#radio1:checked + label span, #radio1 + label span:active {
+#radio1:checked + label span, #radio1 + label span:active, .form-completed #radio1 + label span {
     background:url(sprite.png) 0 -161px no-repeat;
     opacity: 1;
 }
 
 
-#radio2:checked + label span, #radio2 + label span:active {
+#radio2:checked + label span, #radio2 + label span:active, .form-completed #radio2 + label span {
     background:url(sprite.png) -83px -161px no-repeat;
     opacity: 1;
 }
 
-#radio3:checked + label span, #radio3 + label span:active {
+#radio3:checked + label span, #radio3 + label span:active, .form-completed #radio3 + label span {
     background:url(sprite.png) -166px -161px no-repeat;
     opacity: 1;
 }
 
-#radio4:checked + label span, #radio4 + label span:active {
+#radio4:checked + label span, #radio4 + label span:active, .form-completed #radio4 + label span {
     background:url(sprite.png) -249px -161px no-repeat;
     opacity: 1;
 }
 
-#radio5:checked + label span, #radio5 + label span:active {
+#radio5:checked + label span, #radio5 + label span:active, .form-completed #radio5 + label span {
     background:url(sprite.png) -332px -161px no-repeat;
     opacity: 1;
 }
