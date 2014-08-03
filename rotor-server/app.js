@@ -7,6 +7,7 @@ var qs = require('querystring');
 var nodeStatic = require('node-static');
 var dashboardServer = new nodeStatic.Server('../dashboard');
 var webdemoServer = new nodeStatic.Server('../');
+var loginServer = new nodeStatic.Server('../');
 var rack = require('hat').rack();
 var Parse = require('parse').Parse;
 var Clients = [];
@@ -72,6 +73,10 @@ router.get('/generateLogData', function(req, res) {
 
 router.get('/WebDemo1/**', function(req, res) {
   webdemoServer.serve(req, res);
+});
+
+router.get('/login-screen/**', function(req, res) {
+    webdemoServer.serve(req, res);
 });
 
 router.get('/**', function(req, res) {

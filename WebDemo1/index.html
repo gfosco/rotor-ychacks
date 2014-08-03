@@ -14,12 +14,31 @@
 
 </head>
 <body>
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h2>SurveyRotor</h2>
+        </div>
+
+    </div>
+    <div class="
+</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://parse.com/downloads/javascript/parse/latest/min.js"></script>
 <script src="http://rtrp.io/socket.io/socket.io.js"></script>
-
+<script>
+    Parse.initialize('vVZDaqOQeTMLeEahIlmQ0w62uwA4LdijG6cf3XmJ','pDkIHvumDM4W9zKZw9tSjyW2FTFllbk0vBE84QGu');
+    var socket = io.connect('http://rtrp.io');
+    socket.on('connect', function() {
+      socket.emit('alias', 'SurveyRotor');
+    });
+    socket.on('survey', function(data) {
+      $('#')
+    });
+</script>
 </body>
 </html>
