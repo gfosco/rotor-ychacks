@@ -1,78 +1,136 @@
-$(function () {
-    $(document).ready(function() {
-        Highcharts.setOptions({
-            global: {
-                useUTC: false
+$(document).ready(function() {
+
+    var numIn  = 0, numOut = 0;  // count of Direction Out
+    var numPost = 0, numGet = 0, numEvent = 0;
+    var direction, client, type;
+    var socket = io.connect('http://rtrp.io');
+
+    directionChart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'direction',
+            type: 'bar',
+        },
+        title: {
+            text: 'Direction Data'
+        },
+        xAxis: {
+            categories: ['In', 'Out'],
+        },
+        yAxis: {
+            min: 0,
+            labels: {
+                overflow: 'justify'
             }
-        });
-    
-        var chart;
-        $('#container').highcharts({
-            chart: {
-                type: 'spline',
-                animation: Highcharts.svg, // don't animate in old IE
-                marginRight: 10,
-                events: {
-                    load: function() {
-    
-                        // set up the updating of the chart each second
-                        var series = this.series[0];
-                        setInterval(function() {
-                            var x = (new Date()).getTime(), // current time
-                                y = Math.random();
-                            series.addPoint([x, y], true, true);
-                        }, 1000);
-                    }
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
                 }
-            },
-            title: {
-                text: 'Live random data'
-            },
-            xAxis: {
-                type: 'datetime',
-                tickPixelInterval: 150
-            },
-            yAxis: {
-                title: {
-                    text: 'Value'
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
-            tooltip: {
-                formatter: function() {
-                        return '<b>'+ this.series.name +'</b><br/>'+
-                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
-                        Highcharts.numberFormat(this.y, 2);
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            exporting: {
-                enabled: false
-            },
-            series: [{
-                name: 'Currently Random data',
-                data: (function() {
-                    // generate an array of random data
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i;
-    
-                    for (i = -19; i <= 0; i++) {
-                        data.push({
-                            x: time + i * 1000,
-                            y: Math.random()
-                        });
-                    }
-                    return data;
-                })()
-            }]
-        });
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 100,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            data: [0, 0],
+            showInLegend: false
+        }]
     });
-    
+
+
+    typeChart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'type-chart',
+            type: 'bar',
+        },
+        title: {
+            text: 'Type Data'
+        },
+        xAxis: {
+            categories: ['Get', 'Post', 'Event'],
+        },
+        yAxis: {
+            min: 0,
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 100,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            data: [0, 0, 0],
+            showInLegend: false
+        }]
+    });
+
+    socket.on('connect', function() {
+      socket.emit('alias', 'dashboard');
+    });
+
+    socket.on('log', function(event) {
+        // process the event here
+        // event.client, event.type, event.direction
+        console.log(event);
+        direction = event.direction;
+        client = event.client;
+        eventType = event.type;
+        $("#activityStream").append("<p>Type:" + type + ", Direction: " + direction + ", Client: " + client + "</p>");
+
+        // update direction In and Out count
+        if (direction == "in"){
+            numIn += 1 ;
+        }
+        else if(direction == "out"){
+            numOut += 1 ;
+        }
+        else{
+            console.log("something went wrong");
+        }
+
+        // Update type GET and POST
+        if (eventType == "GET"){
+            numGet += 1;
+        }
+        else if (eventType == "POST"){
+            numPost += 1;
+        }
+        else if (eventType == "event"){
+            numEvent += 1;
+        }
+        
+        typeChart.series[0].setData([numGet, numPost, numEvent]);
+        directionChart.series[0].setData([numIn, numOut]);
+    });
+
 }); 
