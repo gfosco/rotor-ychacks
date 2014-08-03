@@ -60,12 +60,9 @@ var postForClient = function(req, res, client, urldata) {
 router.post('/client/*', postForClient);
 router.post('/client/*/**', postForClient);
 
-
 router.get('/**', function(req, res) {
   staticServer.serve(req, res);
-//  staticServer.serveFile('/index.html', 200, {}, req, res);
 });
-
 
 var app = http.createServer(router);
 var io = socket.listen(app);
@@ -94,15 +91,21 @@ io.sockets.on('connection', function(socket) {
     logEvent('in', socket.id, 'event');
     Clients[data] = socket;
   });
+  socket.on('disconnect', function() {
+    connectedClients--;
+    logEvent('disconnect', socket.id, 'disconnect');
+  });
 });
 
 function logEvent(direction, client, type) {
+  var d = new Date();
   console.log('Event ' + direction + ' for ' + client + ' with type ' + type);
   if (Clients['dashboard']) {
     Clients['dashboard'].emit('log', {
       direction:direction,
       client:client,
-      type:type
+      type:type,
+      time:d.getUTCSeconds()
     });
   }
 }
