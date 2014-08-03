@@ -13,6 +13,7 @@ $(document).ready(function() {
             success: function(response) {
                 console.log(response);
                 if (response === true) {
+                    $('#loading').fadeOut();
                     $("#success").fadeIn();
                     $('body').css("background-color", "#7ed21c");
                 } else {
