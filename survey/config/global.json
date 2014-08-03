@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "RotoryPhone": {
+            "applicationId": "vPyy9IY23HMHU8WZgb62EwMJ33veycqgI6eWdmVD", 
+            "masterKey": "DzDFeP9jGZkCEOBnLn64uqni4psMr3OHRDdhbkg8"
+        }, 
+        "_default": {
+            "link": "RotoryPhone"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.19"
+    }
+}

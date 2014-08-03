@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="//www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+Parse.initialize("vPyy9IY23HMHU8WZgb62EwMJ33veycqgI6eWdmVD", "SeNqQAhaCoPxmERLybY9TZpScG0faF4Y8AiUQumf");
+
+var socket = io.connect('http://rtrp.io');
+socket.on('connect', function() {
+  socket.emit('alias', 'RotorSurvey');
+  console.log("alias'd");
+});
+socket.on("get", function(args) {
+  console.log(JSON.stringify(args));
+  socket.emit('response', {
+    responseId: args.responseId,
+    body: "OK"
+  });
+
+  var rating = args.queryData.rating;
+});
+</script>
+</head>
+<body>
+
+</body>
+</html>
